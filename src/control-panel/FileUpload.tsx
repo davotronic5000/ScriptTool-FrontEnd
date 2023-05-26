@@ -1,10 +1,36 @@
-import { Box, Input } from "@chakra-ui/react";
-import { ComponentType } from "react";
+import {
+    Box,
+    FormControl,
+    FormHelperText,
+    FormLabel,
+    Input,
+} from "@chakra-ui/react";
+import { ChangeEventHandler, ComponentType } from "react";
 
-const FileUpload: ComponentType = () => {
+interface FileUploadProps {
+    value: string;
+    handleChange: ChangeEventHandler<HTMLInputElement>;
+}
+
+const FileUpload: ComponentType<FileUploadProps> = ({
+    value,
+    handleChange,
+}) => {
     return (
         <Box>
-            <Input placeholder="Basic usage" />
+            <FormControl>
+                <FormLabel>Upload a script</FormLabel>
+                <Input
+                    placeholder="Basic usage"
+                    variant="filled"
+                    type="file"
+                    onChange={handleChange}
+                    value={value}
+                />
+                <FormHelperText>
+                    Please upload the JSON of your script.
+                </FormHelperText>
+            </FormControl>
         </Box>
     );
 };
