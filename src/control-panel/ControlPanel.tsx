@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { ComponentType, useCallback, useState } from "react";
 import FileUpload from "./FileUpload";
 import useFileUpload from "./use-file-upload";
@@ -22,8 +22,10 @@ const ControlPanel: ComponentType = () => {
         updateScript,
     });
     return (
-        <Box>
-            Control Panel
+        <Box p={2}>
+            <Heading as="h2" size="md">
+                Control Panel
+            </Heading>
             <FileUpload
                 value={fileUploadFieldValue}
                 handleChange={handleFileUpload}

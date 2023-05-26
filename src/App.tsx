@@ -50,6 +50,7 @@ export const App = () => (
                     boxShadow="dark-lg"
                     borderRight="1px solid"
                     borderRightColor="gray.600"
+                    textAlign="left"
                 >
                     <ControlPanel />
                 </GridItem>

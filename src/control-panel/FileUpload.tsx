@@ -4,7 +4,10 @@ import {
     FormHelperText,
     FormLabel,
     Input,
+    InputGroup,
+    InputLeftAddon,
 } from "@chakra-ui/react";
+import { AttachmentIcon } from "@chakra-ui/icons";
 import { ChangeEventHandler, ComponentType } from "react";
 
 interface FileUploadProps {
@@ -18,15 +21,19 @@ const FileUpload: ComponentType<FileUploadProps> = ({
 }) => {
     return (
         <Box>
-            <FormControl>
-                <FormLabel>Upload a script</FormLabel>
-                <Input
-                    placeholder="Basic usage"
-                    variant="filled"
-                    type="file"
-                    onChange={handleChange}
-                    value={value}
-                />
+            <FormControl p={2}>
+                <FormLabel>1. Upload a script</FormLabel>
+                <InputGroup>
+                    <InputLeftAddon pointerEvents="none">
+                        <AttachmentIcon color="gray.300" />
+                    </InputLeftAddon>{" "}
+                    <Input
+                        placeholder="Basic usage"
+                        type="file"
+                        onChange={handleChange}
+                        value={value}
+                    />
+                </InputGroup>
                 <FormHelperText>
                     Please upload the JSON of your script.
                 </FormHelperText>
