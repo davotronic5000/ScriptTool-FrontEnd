@@ -11,7 +11,7 @@ const { definePartsStyle, defineMultiStyleConfig } =
 export const formLabelTheme = defineStyleConfig({
     baseStyle: {
         textTransform: "uppercase",
-        fontSize: "xs",
+        fontSize: "sm",
         mb: 1,
         fontWeight: "semibold",
     },
