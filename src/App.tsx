@@ -29,6 +29,9 @@ export const App = () => (
                     justifyContent="space-between"
                     alignItems="center"
                     height="fit-content"
+                    boxShadow="xl"
+                    borderBottom="1px solid"
+                    borderBottomColor="gray.600"
                     p={2}
                 >
                     <Flex alignItems="center">
@@ -39,7 +42,7 @@ export const App = () => (
                         <DeathBookIcon boxSize={12} color="yellow.600" pl={2} />
                     </Flex>
 
-                    <ColorModeSwitcher />
+                    <ColorModeSwitcher color="yellow.600" />
                 </GridItem>
                 <GridItem
                     colSpan={1}
