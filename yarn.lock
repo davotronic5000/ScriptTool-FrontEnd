@@ -2145,6 +2145,16 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.41.0.tgz#080321c3b68253522f7646b55b577dd99d2950b3"
   integrity sha512-LxcyMGxwmTh2lY9FwHPGWOHmYFCZvbrFCBZL4FzSSsxsRPuhrYUg/49/0KDfW8tnIEaEHtfmn6+NPN+1DqaNmA==
 
+"@fontsource/old-standard-tt@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/old-standard-tt/-/old-standard-tt-5.0.1.tgz#6467144dfc1cb11a6eb2bf611c68f59326e59b5a"
+  integrity sha512-7XDrXBYAIERFr6r2jMiKSmfavziDVtL4T6ZtzNo9XBTMRBjKcSzL7t+bdAHoT9123eqpDu6siCPan7lWTlC4hQ==
+
+"@fontsource/raleway@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/raleway/-/raleway-5.0.1.tgz#5a04530d6f1077949b85f74fd0c8df980335af39"
+  integrity sha512-k63YnBzrKTxY1rqCkonQxk3sIdF1jBo92JzG2v0vLGVduNALcMovD0RrSGfu90YTqUEHhuEBirA9V6mQ5JCT5w==
+
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.8.tgz#03595ac2075a4dc0f191cc2131de14fbd7d410b9"
