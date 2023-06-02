@@ -23,8 +23,11 @@ const baseStyleHelperText = defineStyle({
 
 const baseStyle = definePartsStyle({
     helperText: baseStyleHelperText,
+    container: {
+        marginBottom: 2,
+    },
 });
 
-export const formControlTheme = defineMultiStyleConfig({
+export const formTheme = defineMultiStyleConfig({
     baseStyle,
 });

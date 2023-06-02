@@ -10,7 +10,7 @@ import colors from "./colors";
 import fonts from "./fonts";
 import { headingTheme } from "./typography";
 import { inputTheme } from "./input";
-import { formControlTheme, formLabelTheme } from "./form";
+import { formTheme, formLabelTheme } from "./form";
 import buttonTheme from "./button";
 
 const config: ThemeConfig = {
@@ -40,7 +40,7 @@ const overrides = {
         Heading: headingTheme,
         Input: inputTheme,
         FormLabel: formLabelTheme,
-        FormControl: formControlTheme,
+        Form: formTheme,
         Button: buttonTheme,
     },
 };

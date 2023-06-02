@@ -1,12 +1,7 @@
-import {
-    ChangeEvent,
-    Dispatch,
-    SetStateAction,
-    useCallback,
-    useState,
-} from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import { Role, ScriptSubmission } from "../api-types";
 import { Metadata, RawScript } from "./script";
+import { ScriptManagerDispatch, resetScriptAction } from "./use-script-manager";
 
 const isMetaObject = (
     rawScriptObject: Metadata | Role,
@@ -27,11 +22,7 @@ const defaultScript: ScriptSubmission = {
     roles: [],
 };
 
-const useFileUpload = ({
-    updateScript,
-}: {
-    updateScript: Dispatch<SetStateAction<ScriptSubmission | null>>;
-}) => {
+const useFileUpload = ({ dispatch }: { dispatch: ScriptManagerDispatch }) => {
     const [value, setValue] = useState("");
     const handleFileUpload = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +30,7 @@ const useFileUpload = ({
                 !event.currentTarget.files ||
                 !event.currentTarget.files.length
             ) {
-                updateScript(null);
+                dispatch(resetScriptAction);
                 setValue("");
                 return;
             }
@@ -51,16 +42,19 @@ const useFileUpload = ({
                     event.target.result as string,
                 ) as RawScript;
                 const meta = jsonData.find(isMetaObject);
-                updateScript({
-                    name: meta?.name || defaultScript.name,
-                    colour: meta?.colour || defaultScript.colour,
-                    type: defaultScript.type,
-                    roles: jsonData.filter(isRoleObject),
+                dispatch({
+                    type: "update-script",
+                    data: {
+                        name: meta?.name || defaultScript.name,
+                        colour: meta?.colour || defaultScript.colour,
+                        type: defaultScript.type,
+                        roles: jsonData.filter(isRoleObject),
+                    },
                 });
             };
             setValue(event.target.value);
         },
-        [setValue, updateScript],
+        [setValue, dispatch],
     );
     return {
         fileUploadFieldValue: value,

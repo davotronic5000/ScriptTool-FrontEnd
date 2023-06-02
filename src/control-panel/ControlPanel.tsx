@@ -1,28 +1,38 @@
 import { Box, Button, Heading } from "@chakra-ui/react";
-import { ComponentType, useCallback, useState } from "react";
+import { ComponentType, Fragment, useCallback } from "react";
 import FileUpload from "./FileUpload";
 import useFileUpload from "./use-file-upload";
-import { ScriptSubmission } from "../api-types";
+import ScriptControls from "./ScriptControls";
+import useScriptManager, { resetScriptAction } from "./use-script-manager";
 
 const ControlPanel: ComponentType = () => {
-    const [script, updateScript] = useState<ScriptSubmission | null>(null);
+    const { script, dispatch } = useScriptManager();
     const { fileUploadFieldValue, handleFileUpload, setFileName } =
         useFileUpload({
-            updateScript,
+            dispatch,
         });
     const resetScript = useCallback(() => {
         setFileName("");
-        updateScript(null);
-    }, [setFileName, updateScript]);
+        dispatch(resetScriptAction);
+    }, [setFileName, dispatch]);
     return (
         <Box p={2}>
-            <Heading as="h2" size="md">
+            <Heading
+                as="h2"
+                size="md"
+                textAlign="center"
+                mb={2}
+                pb={1}
+                borderBottom="1px solid"
+                borderColor="purple.300"
+            >
                 Control Panel
             </Heading>
             {script ? (
-                <div>
+                <Fragment>
+                    <ScriptControls />
                     <Button onClick={resetScript}>Reset</Button>
-                </div>
+                </Fragment>
             ) : (
                 <FileUpload
                     value={fileUploadFieldValue}
