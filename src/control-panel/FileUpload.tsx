@@ -32,6 +32,7 @@ const FileUpload: ComponentType<FileUploadProps> = ({
                         type="file"
                         onChange={handleChange}
                         value={value}
+                        accept=".json"
                     />
                 </InputGroup>
                 <FormHelperText>
