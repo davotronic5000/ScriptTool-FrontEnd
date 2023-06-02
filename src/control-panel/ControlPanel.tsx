@@ -34,7 +34,7 @@ const ControlPanel: ComponentType = () => {
                         <ScriptControls dispatch={dispatch} script={script} />
                         <Flex justifyContent="center">
                             <ButtonGroup>
-                                <Button onClick={resetScript}>Submit</Button>
+                                <Button onClick={() => {}}>Submit</Button>
                                 <Button
                                     onClick={resetScript}
                                     variant="secondary"
