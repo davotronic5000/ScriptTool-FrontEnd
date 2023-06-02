@@ -13,7 +13,7 @@ import useScriptManager, { resetScriptAction } from "./use-script-manager";
 import useDownloadPdf from "./use-download-pdf";
 
 interface ControlPanelProps {
-    updatePdf: Dispatch<SetStateAction<Blob | null>>;
+    updatePdf: Dispatch<SetStateAction<Uint8Array | null>>;
 }
 
 const ControlPanel: ComponentType<ControlPanelProps> = ({ updatePdf }) => {

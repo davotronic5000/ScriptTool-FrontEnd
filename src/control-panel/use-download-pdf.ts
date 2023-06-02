@@ -12,15 +12,35 @@ const downloadPdf = async (script: ScriptSubmission) => {
     });
 };
 
-const useDownloadPdf = (updatePdf: Dispatch<SetStateAction<Blob | null>>) => {
+const concatUintArrayArrays = (a: Uint8Array, b: Uint8Array) => {
+    const c = new Uint8Array(a.length + b.length);
+    c.set(a, 0);
+    c.set(b, a.length);
+    return c;
+};
+
+const useDownloadPdf = (
+    updatePdf: Dispatch<SetStateAction<Uint8Array | null>>,
+) => {
     const [fetchingPdf, updateFetchingPdf] = useState(false);
     const createPdf = useCallback(
         async (script: ScriptSubmission) => {
             updateFetchingPdf(true);
             const data = await downloadPdf(script);
             if (data.body) {
-                const file = await data.blob();
-                updatePdf(file);
+                const reader = await data.body.getReader();
+                let pdf = new Uint8Array();
+                let processing = true;
+                while (processing) {
+                    const { done, value } = await reader.read();
+                    if (value) {
+                        pdf = concatUintArrayArrays(pdf, value);
+                    }
+                    if (done) {
+                        processing = false;
+                    }
+                }
+                updatePdf(pdf);
             }
             updateFetchingPdf(false);
         },

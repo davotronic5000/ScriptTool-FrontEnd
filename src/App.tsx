@@ -13,20 +13,23 @@ import theme from "./theme";
 import ControlPanel from "./control-panel/ControlPanel";
 import ClockTowerIcon from "./icons/clock-tower";
 import DeathBookIcon from "./icons/death-book";
+import { Worker, Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
 
-import { pdfjs } from "react-pdf";
+// import { pdfjs } from "react-pdf";
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.js",
-    import.meta.url,
-).toString();
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//     "pdfjs-dist/build/pdf.worker.min.js",
+//     import.meta.url,
+// ).toString();
 
 export const App = () => {
-    const [pdf, updatePdf] = useState<Blob | null>(null);
-    const [numPages, setNumPages] = useState<number | null>(null);
-    const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
-        setNumPages(numPages);
-    };
+    const [pdf, updatePdf] = useState<Uint8Array | null>(null);
+    // const [numPages, setNumPages] = useState<number | null>(null);
+    // const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
+    //     setNumPages(numPages);
+    // };
+    console.log("pdf =", pdf);
     return (
         <ChakraProvider theme={theme}>
             <Box textAlign="center" fontSize="xl">
@@ -75,23 +78,26 @@ export const App = () => {
                     <GridItem colSpan={1}>
                         <Flex justifyContent="center">
                             {pdf && (
-                                <Document
-                                    file={pdf}
-                                    onLoadSuccess={onDocumentLoadSuccess}
-                                >
-                                    {Array.from(
-                                        new Array(numPages),
-                                        (el, index) => (
-                                            <Page
-                                                scale={1.5}
-                                                key={`page_${index + 1}`}
-                                                pageNumber={index + 1}
-                                                renderTextLayer={false}
-                                                renderAnnotationLayer={false}
-                                            />
-                                        ),
-                                    )}
-                                </Document>
+                                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                                    <Viewer fileUrl={pdf} />
+                                </Worker>
+                                // <Document
+                                //     file={pdf}
+                                //     onLoadSuccess={onDocumentLoadSuccess}
+                                // >
+                                //     {Array.from(
+                                //         new Array(numPages),
+                                //         (el, index) => (
+                                //             <Page
+                                //                 scale={1.5}
+                                //                 key={`page_${index + 1}`}
+                                //                 pageNumber={index + 1}
+                                //                 renderTextLayer={false}
+                                //                 renderAnnotationLayer={false}
+                                //             />
+                                //         ),
+                                //     )}
+                                // </Document>
                             )}
                         </Flex>
                     </GridItem>
