@@ -5,7 +5,7 @@ import {
     FormLabel,
     Input,
 } from "@chakra-ui/react";
-import { ComponentType, Fragment } from "react";
+import { ComponentType } from "react";
 import { ScriptManagerDispatch } from "./use-script-manager";
 import { ScriptSubmission } from "../api-types";
 

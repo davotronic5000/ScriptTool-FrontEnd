@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Flex, Heading } from "@chakra-ui/react";
 import { ComponentType, Fragment, useCallback } from "react";
 import FileUpload from "./FileUpload";
 import useFileUpload from "./use-file-upload";
@@ -33,7 +33,15 @@ const ControlPanel: ComponentType = () => {
                     <Fragment>
                         <ScriptControls dispatch={dispatch} script={script} />
                         <Flex justifyContent="center">
-                            <Button onClick={resetScript}>Reset</Button>
+                            <ButtonGroup>
+                                <Button onClick={resetScript}>Submit</Button>
+                                <Button
+                                    onClick={resetScript}
+                                    variant="secondary"
+                                >
+                                    Reset
+                                </Button>
+                            </ButtonGroup>
                         </Flex>
                     </Fragment>
                 ) : (

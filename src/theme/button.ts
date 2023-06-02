@@ -13,11 +13,24 @@ const solid = defineStyle({
     },
 });
 
+const secondary = defineStyle({
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    bg: "red.800",
+    color: "red.200",
+    borderRadius: 1,
+    border: "2px solid",
+    borderColor: "red.200",
+    _hover: {
+        bg: "red.700",
+    },
+});
+
 const buttonTheme = defineStyleConfig({
     defaultProps: {
         size: "sm",
     },
-    variants: { solid },
+    variants: { solid, secondary },
 });
 
 export default buttonTheme;
