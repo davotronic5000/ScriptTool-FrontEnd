@@ -75,6 +75,7 @@ const scriptManagerReducer: Reducer<ScriptState, ScriptManagerActions> = (
 
 const useScriptManager = () => {
     const [state, dispatch] = useReducer(scriptManagerReducer, tempDefault);
+
     return { script: state, dispatch };
 };
 

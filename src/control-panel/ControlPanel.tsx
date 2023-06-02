@@ -4,8 +4,10 @@ import FileUpload from "./FileUpload";
 import useFileUpload from "./use-file-upload";
 import ScriptControls from "./ScriptControls";
 import useScriptManager, { resetScriptAction } from "./use-script-manager";
+import useDownloadPdf from "./use-download-pdf";
 
 const ControlPanel: ComponentType = () => {
+    const { fetchingPdf, createPdf } = useDownloadPdf();
     const { script, dispatch } = useScriptManager();
     const { fileUploadFieldValue, handleFileUpload, setFileName } =
         useFileUpload({
@@ -34,7 +36,13 @@ const ControlPanel: ComponentType = () => {
                         <ScriptControls dispatch={dispatch} script={script} />
                         <Flex justifyContent="center">
                             <ButtonGroup>
-                                <Button onClick={() => {}}>Submit</Button>
+                                <Button
+                                    isLoading={fetchingPdf}
+                                    loadingText="Submitting"
+                                    onClick={() => createPdf(script)}
+                                >
+                                    Submit
+                                </Button>
                                 <Button
                                     onClick={resetScript}
                                     variant="secondary"
