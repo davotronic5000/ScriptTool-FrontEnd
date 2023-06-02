@@ -1,43 +1,34 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Button, Heading } from "@chakra-ui/react";
 import { ComponentType, useCallback, useState } from "react";
 import FileUpload from "./FileUpload";
 import useFileUpload from "./use-file-upload";
 import { ScriptSubmission } from "../api-types";
 
-const defaultScript: ScriptSubmission = {
-    name: "Custom Script",
-    colour: "#800000",
-    type: "ravenswood-bluff",
-    roles: [],
-};
-
 const ControlPanel: ComponentType = () => {
-    const [script, updateScript] = useState<ScriptSubmission>(defaultScript);
-    const resetToDefault = useCallback(
-        () => updateScript(defaultScript),
-        [updateScript],
-    );
-    const { fileUploadFieldValue, handleFileUpload } = useFileUpload({
-        resetToDefaultScript: resetToDefault,
-        updateScript,
-    });
+    const [script, updateScript] = useState<ScriptSubmission | null>(null);
+    const { fileUploadFieldValue, handleFileUpload, setFileName } =
+        useFileUpload({
+            updateScript,
+        });
+    const resetScript = useCallback(() => {
+        setFileName("");
+        updateScript(null);
+    }, [setFileName, updateScript]);
     return (
         <Box p={2}>
             <Heading as="h2" size="md">
                 Control Panel
             </Heading>
-            <FileUpload
-                value={fileUploadFieldValue}
-                handleChange={handleFileUpload}
-            />
-            <p>{script.name}</p>
-            <p>{script.colour}</p>
-            <p>{script.type}</p>
-            <div>
-                {script.roles.map((role) => (
-                    <div key={role.id}>{role.id}</div>
-                ))}
-            </div>
+            {script ? (
+                <div>
+                    <Button onClick={resetScript}>Reset</Button>
+                </div>
+            ) : (
+                <FileUpload
+                    value={fileUploadFieldValue}
+                    handleChange={handleFileUpload}
+                />
+            )}
         </Box>
     );
 };

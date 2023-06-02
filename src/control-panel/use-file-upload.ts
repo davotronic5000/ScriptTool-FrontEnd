@@ -20,12 +20,17 @@ const isRoleObject = (
     return rawScriptObject.id !== "_meta";
 };
 
+const defaultScript: ScriptSubmission = {
+    name: "Custom Script",
+    colour: "#800000",
+    type: "ravenswood-bluff",
+    roles: [],
+};
+
 const useFileUpload = ({
     updateScript,
-    resetToDefaultScript,
 }: {
-    updateScript: Dispatch<SetStateAction<ScriptSubmission>>;
-    resetToDefaultScript: () => void;
+    updateScript: Dispatch<SetStateAction<ScriptSubmission | null>>;
 }) => {
     const [value, setValue] = useState("");
     const handleFileUpload = useCallback(
@@ -34,7 +39,7 @@ const useFileUpload = ({
                 !event.currentTarget.files ||
                 !event.currentTarget.files.length
             ) {
-                resetToDefaultScript();
+                updateScript(null);
                 setValue("");
                 return;
             }
@@ -46,19 +51,22 @@ const useFileUpload = ({
                     event.target.result as string,
                 ) as RawScript;
                 const meta = jsonData.find(isMetaObject);
-                resetToDefaultScript();
-                updateScript((existingScript) => ({
-                    name: meta?.name || existingScript.name,
-                    colour: meta?.colour || existingScript.colour,
-                    type: existingScript.type,
+                updateScript({
+                    name: meta?.name || defaultScript.name,
+                    colour: meta?.colour || defaultScript.colour,
+                    type: defaultScript.type,
                     roles: jsonData.filter(isRoleObject),
-                }));
+                });
             };
             setValue(event.target.value);
         },
-        [setValue, resetToDefaultScript, updateScript],
+        [setValue, updateScript],
     );
-    return { fileUploadFieldValue: value, handleFileUpload };
+    return {
+        fileUploadFieldValue: value,
+        handleFileUpload,
+        setFileName: setValue,
+    };
 };
 
 export default useFileUpload;

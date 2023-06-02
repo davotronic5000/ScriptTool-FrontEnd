@@ -1,5 +1,6 @@
 import "@fontsource/raleway/400.css";
 import "@fontsource/raleway/600.css";
+import "@fontsource/raleway/700.css";
 import "@fontsource/old-standard-tt/700.css";
 
 import { ThemeConfig } from "@chakra-ui/theme";
@@ -10,6 +11,7 @@ import fonts from "./fonts";
 import { headingTheme } from "./typography";
 import { inputTheme } from "./input";
 import { formControlTheme, formLabelTheme } from "./form";
+import buttonTheme from "./button";
 
 const config: ThemeConfig = {
     initialColorMode: "system",
@@ -39,6 +41,7 @@ const overrides = {
         Input: inputTheme,
         FormLabel: formLabelTheme,
         FormControl: formControlTheme,
+        Button: buttonTheme,
     },
 };
 
