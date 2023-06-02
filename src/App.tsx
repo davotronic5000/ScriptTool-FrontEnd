@@ -13,8 +13,10 @@ import theme from "./theme";
 import ControlPanel from "./control-panel/ControlPanel";
 import ClockTowerIcon from "./icons/clock-tower";
 import DeathBookIcon from "./icons/death-book";
-import { Worker, Viewer } from "@react-pdf-viewer/core";
+import { Worker, Viewer, PageLayout } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
+// @ts-ignore
+import temppdf from "./indigestion-brewing.pdf";
 
 // import { pdfjs } from "react-pdf";
 
@@ -22,6 +24,19 @@ import "@react-pdf-viewer/core/lib/styles/index.css";
 //     "pdfjs-dist/build/pdf.worker.min.js",
 //     import.meta.url,
 // ).toString();
+
+const pageLayout: PageLayout = {
+    buildPageStyles: () => ({
+        alignItems: "center",
+        display: "flex",
+        justifyContent: "center",
+        backgroundColor: "transparent",
+    }),
+    transformSize: ({ size }) => ({
+        height: size.height + 30,
+        width: size.width + 30,
+    }),
+};
 
 export const App = () => {
     const [pdf, updatePdf] = useState<Uint8Array | null>(null);
@@ -36,7 +51,7 @@ export const App = () => {
                 <Grid
                     minH="100vh"
                     templateColumns={"2fr 5fr"}
-                    templateRows={"min-content auto"}
+                    templateRows={"65px auto"}
                     bg="gray.700"
                 >
                     <GridItem
@@ -45,7 +60,6 @@ export const App = () => {
                         display="flex"
                         justifyContent="space-between"
                         alignItems="center"
-                        height="fit-content"
                         boxShadow="xl"
                         borderBottom="1px solid"
                         borderBottomColor="gray.600"
@@ -75,11 +89,19 @@ export const App = () => {
                     >
                         <ControlPanel updatePdf={updatePdf} />
                     </GridItem>
-                    <GridItem colSpan={1}>
+                    <GridItem
+                        colSpan={1}
+                        maxH="calc(100vh - 65px)"
+                        overflow="scroll"
+                        p={4}
+                    >
                         <Flex justifyContent="center">
-                            {pdf && (
+                            {temppdf && (
                                 <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                                    <Viewer fileUrl={pdf} />
+                                    <Viewer
+                                        fileUrl={temppdf}
+                                        pageLayout={pageLayout}
+                                    />
                                 </Worker>
                                 // <Document
                                 //     file={pdf}
