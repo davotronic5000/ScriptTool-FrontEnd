@@ -14,7 +14,9 @@ const solid = defineStyle({
 });
 
 const buttonTheme = defineStyleConfig({
-    defaultProps: {},
+    defaultProps: {
+        size: "sm",
+    },
     variants: { solid },
 });
 

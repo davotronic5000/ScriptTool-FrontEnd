@@ -1,4 +1,4 @@
-import { Box, Button, Heading } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import { ComponentType, Fragment, useCallback } from "react";
 import FileUpload from "./FileUpload";
 import useFileUpload from "./use-file-upload";
@@ -16,7 +16,7 @@ const ControlPanel: ComponentType = () => {
         dispatch(resetScriptAction);
     }, [setFileName, dispatch]);
     return (
-        <Box p={2}>
+        <Flex direction="column" p={2}>
             <Heading
                 as="h2"
                 size="md"
@@ -24,22 +24,26 @@ const ControlPanel: ComponentType = () => {
                 mb={2}
                 pb={1}
                 borderBottom="1px solid"
-                borderColor="purple.300"
+                borderColor="blue.200"
             >
                 Control Panel
             </Heading>
-            {script ? (
-                <Fragment>
-                    <ScriptControls />
-                    <Button onClick={resetScript}>Reset</Button>
-                </Fragment>
-            ) : (
-                <FileUpload
-                    value={fileUploadFieldValue}
-                    handleChange={handleFileUpload}
-                />
-            )}
-        </Box>
+            <Box p={2}>
+                {script ? (
+                    <Fragment>
+                        <ScriptControls dispatch={dispatch} script={script} />
+                        <Flex justifyContent="center">
+                            <Button onClick={resetScript}>Reset</Button>
+                        </Flex>
+                    </Fragment>
+                ) : (
+                    <FileUpload
+                        value={fileUploadFieldValue}
+                        handleChange={handleFileUpload}
+                    />
+                )}
+            </Box>
+        </Flex>
     );
 };
 

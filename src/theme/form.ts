@@ -11,7 +11,7 @@ const { definePartsStyle, defineMultiStyleConfig } =
 export const formLabelTheme = defineStyleConfig({
     baseStyle: {
         textTransform: "uppercase",
-        fontSize: "sm",
+        fontSize: "xs",
         mb: 1,
         fontWeight: "semibold",
     },
@@ -19,6 +19,7 @@ export const formLabelTheme = defineStyleConfig({
 
 const baseStyleHelperText = defineStyle({
     textAlign: "left",
+    mt: 0,
 });
 
 const baseStyle = definePartsStyle({

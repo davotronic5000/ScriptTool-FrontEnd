@@ -1,26 +1,61 @@
 import {
+    Box,
     FormControl,
     FormHelperText,
     FormLabel,
     Input,
 } from "@chakra-ui/react";
 import { ComponentType, Fragment } from "react";
+import { ScriptManagerDispatch } from "./use-script-manager";
+import { ScriptSubmission } from "../api-types";
 
-const ScriptControls: ComponentType = () => {
+interface ScriptControlsProps {
+    dispatch: ScriptManagerDispatch;
+    script: ScriptSubmission;
+}
+
+const ScriptControls: ComponentType<ScriptControlsProps> = ({
+    dispatch,
+    script,
+}) => {
     return (
-        <Fragment>
+        <Box mb={2}>
             <FormControl>
-                <FormLabel>2. Choose a name</FormLabel>
-                <Input type="text" />
+                <FormLabel>Choose a name:</FormLabel>
+                <Input
+                    type="text"
+                    onChange={(event) =>
+                        dispatch({
+                            type: "update-value",
+                            data: {
+                                key: "name",
+                                value: event.target.value,
+                            },
+                        })
+                    }
+                    value={script.name}
+                />
             </FormControl>
             <FormControl>
-                <FormLabel>3. Choose a colour</FormLabel>
-                <Input type="color" />
+                <FormLabel>Choose a colour:</FormLabel>
+                <Input
+                    type="color"
+                    onChange={(event) =>
+                        dispatch({
+                            type: "update-value",
+                            data: {
+                                key: "colour",
+                                value: event.target.value,
+                            },
+                        })
+                    }
+                    value={script.colour}
+                />
                 <FormHelperText>
                     Please upload the JSON of your script.
                 </FormHelperText>
             </FormControl>
-        </Fragment>
+        </Box>
     );
 };
 
