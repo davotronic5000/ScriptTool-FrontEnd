@@ -52,7 +52,8 @@ const ScriptControls: ComponentType<ScriptControlsProps> = ({
                     value={script.colour}
                 />
                 <FormHelperText>
-                    Please upload the JSON of your script.
+                    This colour will be used to create the side bar and back of
+                    the script.
                 </FormHelperText>
             </FormControl>
         </Box>

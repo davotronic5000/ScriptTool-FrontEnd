@@ -18,7 +18,7 @@ export const App = () => (
         <Box textAlign="center" fontSize="xl">
             <Grid
                 minH="100vh"
-                templateColumns={"1fr 2fr"}
+                templateColumns={"2fr 5fr"}
                 templateRows={"min-content auto"}
                 bg="gray.700"
             >
