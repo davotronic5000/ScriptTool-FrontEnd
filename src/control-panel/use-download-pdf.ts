@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { ScriptSubmission } from "../api-types";
 
 const downloadPdf = async (script: ScriptSubmission) => {
@@ -12,15 +12,19 @@ const downloadPdf = async (script: ScriptSubmission) => {
     });
 };
 
-const useDownloadPdf = () => {
+const useDownloadPdf = (updatePdf: Dispatch<SetStateAction<Blob | null>>) => {
     const [fetchingPdf, updateFetchingPdf] = useState(false);
     const createPdf = useCallback(
         async (script: ScriptSubmission) => {
             updateFetchingPdf(true);
             const data = await downloadPdf(script);
+            if (data.body) {
+                const file = await data.blob();
+                updatePdf(file);
+            }
             updateFetchingPdf(false);
         },
-        [updateFetchingPdf],
+        [updateFetchingPdf, updatePdf],
     );
     return { createPdf, fetchingPdf };
 };
