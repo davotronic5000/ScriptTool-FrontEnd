@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { ScriptSubmission } from "../api-types";
 
 const downloadPdf = async (script: ScriptSubmission) => {
-    return await fetch("http://localhost:8080/getPdf", {
+    return await fetch("http://localhost:8080/script", {
         method: "POST",
         mode: "cors",
         headers: {

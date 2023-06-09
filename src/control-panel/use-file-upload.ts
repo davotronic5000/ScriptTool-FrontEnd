@@ -20,6 +20,7 @@ const defaultScript: ScriptSubmission = {
     colour: "#800000",
     type: "ravenswood-bluff",
     roles: [],
+    modern: true,
 };
 
 const useFileUpload = ({ dispatch }: { dispatch: ScriptManagerDispatch }) => {
@@ -49,6 +50,7 @@ const useFileUpload = ({ dispatch }: { dispatch: ScriptManagerDispatch }) => {
                         colour: meta?.colour || defaultScript.colour,
                         type: defaultScript.type,
                         roles: jsonData.filter(isRoleObject),
+                        modern: true,
                     },
                 });
             };

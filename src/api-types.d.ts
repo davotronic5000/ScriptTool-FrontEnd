@@ -3,6 +3,7 @@ export interface ScriptSubmission {
     colour: string;
     type: "teenseyville" | "ravenswood-bluff" | "phobos";
     roles: Role[];
+    modern?: boolean;
 }
 
 export interface Role {
