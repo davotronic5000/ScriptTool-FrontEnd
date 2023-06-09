@@ -1,6 +1,7 @@
 import { ComponentType } from "react";
 import { GridItem, Flex } from "@chakra-ui/react";
 import { Worker, Viewer, PageLayout } from "@react-pdf-viewer/core";
+import { headerSize, footerSize } from "./constants";
 
 const pageLayout: PageLayout = {
     buildPageStyles: () => ({
@@ -21,7 +22,12 @@ interface ContentProps {
 
 const Content: ComponentType<ContentProps> = ({ pdf }) => {
     return (
-        <GridItem colSpan={1} maxH="calc(100vh - 65px)" overflow="scroll" p={4}>
+        <GridItem
+            colSpan={1}
+            maxH={`calc(100vh - ${headerSize + footerSize}px)`}
+            overflow="scroll"
+            p={4}
+        >
             <Flex justifyContent="center">
                 {pdf && (
                     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">

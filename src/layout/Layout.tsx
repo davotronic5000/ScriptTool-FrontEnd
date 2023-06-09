@@ -3,6 +3,8 @@ import { Box, Grid, useColorModeValue } from "@chakra-ui/react";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import Content from "./Content";
+import { headerSize, footerSize } from "./constants";
+import Footer from "./Footer";
 
 const Layout: ComponentType = () => {
     const [pdf, updatePdf] = useState<Uint8Array | null>(null);
@@ -12,12 +14,13 @@ const Layout: ComponentType = () => {
             <Grid
                 minH="100vh"
                 templateColumns={"2fr 5fr"}
-                templateRows={"65px auto"}
+                templateRows={`${headerSize}px auto ${footerSize}px`}
                 bg={bg}
             >
                 <Header />
                 <SideBar updatePdf={updatePdf} />
                 <Content pdf={pdf} />
+                <Footer />
             </Grid>
         </Box>
     );
