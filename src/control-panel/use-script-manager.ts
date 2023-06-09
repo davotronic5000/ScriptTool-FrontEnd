@@ -1,39 +1,5 @@
 import { Dispatch, Reducer, useReducer } from "react";
-import { Role, ScriptSubmission } from "../api-types";
-
-const tempDefault: ScriptSubmission = {
-    name: "Indigestion Brewing",
-    colour: "#800000",
-    type: "ravenswood-bluff",
-    roles: [
-        { id: "noble" },
-        { id: "clockmaker" },
-        { id: "grandmother" },
-        { id: "pixie" },
-        { id: "sailor" },
-        { id: "cult_leader" },
-        { id: "snake_charmer" },
-        { id: "innkeeper" },
-        { id: "professor" },
-        { id: "amnesiac" },
-        { id: "tea_lady" },
-        { id: "farmer" },
-        { id: "cannibal" },
-        { id: "goon" },
-        { id: "snitch" },
-        { id: "klutz" },
-        { id: "puzzlemaster" },
-        { id: "godfather" },
-        { id: "cerenovus" },
-        { id: "devils_advocate" },
-        { id: "widow" },
-        { id: "lil_monsta" },
-        { id: "fang_gu" },
-        { id: "lleech" },
-        { id: "legion" },
-    ] as Role[],
-    modern: false,
-};
+import { ScriptSubmission } from "../api-types";
 
 type ScriptState = ScriptSubmission | null;
 
@@ -76,7 +42,7 @@ const scriptManagerReducer: Reducer<ScriptState, ScriptManagerActions> = (
 };
 
 const useScriptManager = () => {
-    const [state, dispatch] = useReducer(scriptManagerReducer, tempDefault);
+    const [state, dispatch] = useReducer(scriptManagerReducer, null);
 
     return { script: state, dispatch };
 };
