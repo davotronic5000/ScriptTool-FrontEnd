@@ -14,8 +14,6 @@ import ClockTowerIcon from "./icons/clock-tower";
 import DeathBookIcon from "./icons/death-book";
 import { Worker, Viewer, PageLayout } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
-// @ts-ignore
-import temppdf from "./indigestion-brewing.pdf";
 
 const pageLayout: PageLayout = {
     buildPageStyles: () => ({
@@ -83,10 +81,10 @@ export const App = () => {
                         p={4}
                     >
                         <Flex justifyContent="center">
-                            {temppdf && (
+                            {pdf && (
                                 <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
                                     <Viewer
-                                        fileUrl={temppdf}
+                                        fileUrl={pdf}
                                         pageLayout={pageLayout}
                                     />
                                 </Worker>
