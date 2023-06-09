@@ -20,7 +20,7 @@ const defaultScript: ScriptSubmission = {
     colour: "#800000",
     type: "ravenswood-bluff",
     roles: [],
-    modern: true,
+    modern: false,
 };
 
 const useFileUpload = ({ dispatch }: { dispatch: ScriptManagerDispatch }) => {
@@ -43,6 +43,7 @@ const useFileUpload = ({ dispatch }: { dispatch: ScriptManagerDispatch }) => {
                     event.target.result as string,
                 ) as RawScript;
                 const meta = jsonData.find(isMetaObject);
+                const modern = window.location.pathname.includes("/modern");
                 dispatch({
                     type: "update-script",
                     data: {
@@ -50,7 +51,7 @@ const useFileUpload = ({ dispatch }: { dispatch: ScriptManagerDispatch }) => {
                         colour: meta?.colour || defaultScript.colour,
                         type: defaultScript.type,
                         roles: jsonData.filter(isRoleObject),
-                        modern: true,
+                        modern,
                     },
                 });
             };

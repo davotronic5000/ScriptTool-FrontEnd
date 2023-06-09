@@ -53,7 +53,8 @@ const ScriptControls: ComponentType<ScriptControlsProps> = ({
                 />
                 <FormHelperText>
                     This colour will be used to create the side bar and back of
-                    the script.
+                    the script. Due to the way these are created, the actual
+                    colour appearance may vary.
                 </FormHelperText>
             </FormControl>
         </Box>

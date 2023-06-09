@@ -32,7 +32,7 @@ const tempDefault: ScriptSubmission = {
         { id: "lleech" },
         { id: "legion" },
     ] as Role[],
-    modern: true,
+    modern: false,
 };
 
 type ScriptState = ScriptSubmission | null;
