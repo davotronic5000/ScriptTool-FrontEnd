@@ -24,10 +24,6 @@ const overrides = {
         global: (props: StyleFunctionProps) => ({
             body: {
                 bg: mode("white", "gray.800")(props),
-                bgGradient: mode(
-                    "linear(to-b, gray.300, orange.200)",
-                    "linear(to-b, teal.600, gray.800)",
-                )(props),
             },
             "input[type=file]::file-selector-button": {
                 display: "none",

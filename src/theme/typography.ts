@@ -4,6 +4,9 @@ export const headingTheme = defineStyleConfig({
     baseStyle: {
         fontWeight: "semibold",
         fontVariant: "small-caps",
-        color: "gray.200",
+        color: "blue.700",
+        _dark: {
+            color: "gray.200",
+        },
     },
 });

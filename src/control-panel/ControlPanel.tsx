@@ -12,7 +12,7 @@ import ScriptControls from "./ScriptControls";
 import useScriptManager, { resetScriptAction } from "./use-script-manager";
 import useDownloadPdf from "./use-download-pdf";
 
-interface ControlPanelProps {
+export interface ControlPanelProps {
     updatePdf: Dispatch<SetStateAction<Uint8Array | null>>;
 }
 
