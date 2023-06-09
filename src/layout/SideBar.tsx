@@ -4,7 +4,7 @@ import ControlPanel, { ControlPanelProps } from "../control-panel/ControlPanel";
 
 interface SideBarProps extends ControlPanelProps {}
 
-const SideBar: ComponentType<SideBarProps> = ({ updatePdf }) => {
+const SideBar: ComponentType<SideBarProps> = (props) => {
     const bg = useColorModeValue("gray.300", "purple.900");
     const borderColor = useColorModeValue("gray.900", "gray.600");
     return (
@@ -16,7 +16,7 @@ const SideBar: ComponentType<SideBarProps> = ({ updatePdf }) => {
             borderRightColor={borderColor}
             textAlign="left"
         >
-            <ControlPanel updatePdf={updatePdf} />
+            <ControlPanel {...props} />
         </GridItem>
     );
 };

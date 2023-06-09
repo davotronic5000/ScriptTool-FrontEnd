@@ -1,7 +1,7 @@
 import { Dispatch, Reducer, useReducer } from "react";
 import { ScriptSubmission } from "../api-types";
 
-type ScriptState = ScriptSubmission | null;
+export type ScriptState = ScriptSubmission | null;
 
 interface UpdateScriptAction {
     type: "update-script";

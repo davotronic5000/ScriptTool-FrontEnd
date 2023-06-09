@@ -19,8 +19,8 @@ const Footer: ComponentType = () => {
             fontSize="sm"
         >
             This project is not affiliated with The Pandemonium Institute. All
-            roles, content are the property of Steven Medway and The Pandemonium
-            Institute.
+            roles & content are the property of Steven Medway and The
+            Pandemonium Institute.
         </GridItem>
     );
 };

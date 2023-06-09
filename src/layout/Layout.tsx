@@ -5,9 +5,11 @@ import SideBar from "./SideBar";
 import Content from "./Content";
 import { headerSize, footerSize } from "./constants";
 import Footer from "./Footer";
+import useScriptManager from "../control-panel/use-script-manager";
 
 const Layout: ComponentType = () => {
     const [pdf, updatePdf] = useState<Uint8Array | null>(null);
+    const { script, dispatch } = useScriptManager();
     const bg = useColorModeValue("blue.700", "gray.700");
     return (
         <Box textAlign="center" fontSize="xl">
@@ -18,8 +20,12 @@ const Layout: ComponentType = () => {
                 bg={bg}
             >
                 <Header />
-                <SideBar updatePdf={updatePdf} />
-                <Content pdf={pdf} />
+                <SideBar
+                    updatePdf={updatePdf}
+                    script={script}
+                    dispatch={dispatch}
+                />
+                <Content pdf={pdf} scriptName={script?.name} />
                 <Footer />
             </Grid>
         </Box>

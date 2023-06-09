@@ -9,16 +9,26 @@ import {
 import FileUpload from "./FileUpload";
 import useFileUpload from "./use-file-upload";
 import ScriptControls from "./ScriptControls";
-import useScriptManager, { resetScriptAction } from "./use-script-manager";
+import {
+    resetScriptAction,
+    ScriptManagerDispatch,
+    ScriptState,
+} from "./use-script-manager";
 import useDownloadPdf from "./use-download-pdf";
 
 export interface ControlPanelProps {
     updatePdf: Dispatch<SetStateAction<Uint8Array | null>>;
+    dispatch: ScriptManagerDispatch;
+    script: ScriptState;
 }
 
-const ControlPanel: ComponentType<ControlPanelProps> = ({ updatePdf }) => {
+const ControlPanel: ComponentType<ControlPanelProps> = ({
+    updatePdf,
+    script,
+    dispatch,
+}) => {
     const { fetchingPdf, createPdf } = useDownloadPdf(updatePdf);
-    const { script, dispatch } = useScriptManager();
+
     const { fileUploadFieldValue, handleFileUpload, setFileName } =
         useFileUpload({
             dispatch,
