@@ -6,7 +6,7 @@ import ClockTowerIcon from "../icons/clock-tower";
 import DeathBookIcon from "../icons/death-book";
 
 const Header: ComponentType = () => {
-    const bg = useColorModeValue("gray.200", "gray.900");
+    const bg = useColorModeValue("gray.100", "gray.900");
     const borderColor = useColorModeValue("gray.900", "gray.600");
     return (
         <GridItem

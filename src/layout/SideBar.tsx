@@ -5,7 +5,7 @@ import ControlPanel, { ControlPanelProps } from "../control-panel/ControlPanel";
 interface SideBarProps extends ControlPanelProps {}
 
 const SideBar: ComponentType<SideBarProps> = ({ updatePdf }) => {
-    const bg = useColorModeValue("blue.100", "purple.900");
+    const bg = useColorModeValue("gray.300", "purple.900");
     const borderColor = useColorModeValue("gray.900", "gray.600");
     return (
         <GridItem

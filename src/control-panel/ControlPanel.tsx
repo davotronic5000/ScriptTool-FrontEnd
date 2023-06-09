@@ -25,8 +25,9 @@ const ControlPanel: ComponentType<ControlPanelProps> = ({ updatePdf }) => {
         });
     const resetScript = useCallback(() => {
         setFileName("");
+        updatePdf(null);
         dispatch(resetScriptAction);
-    }, [setFileName, dispatch]);
+    }, [setFileName, dispatch, updatePdf]);
     return (
         <Flex direction="column" p={2}>
             <Heading

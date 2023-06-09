@@ -6,7 +6,7 @@ import Content from "./Content";
 
 const Layout: ComponentType = () => {
     const [pdf, updatePdf] = useState<Uint8Array | null>(null);
-    const bg = useColorModeValue("blue.300", "gray.700");
+    const bg = useColorModeValue("blue.700", "gray.700");
     return (
         <Box textAlign="center" fontSize="xl">
             <Grid
