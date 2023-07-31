@@ -8,6 +8,7 @@ import {
 import { ComponentType } from "react";
 import { ScriptManagerDispatch } from "./use-script-manager";
 import { ScriptSubmission } from "../api-types";
+import ColourPicker from "./ColourPicker";
 
 interface ScriptControlsProps {
     dispatch: ScriptManagerDispatch;
@@ -38,14 +39,13 @@ const ScriptControls: ComponentType<ScriptControlsProps> = ({
             </FormControl>
             <FormControl>
                 <FormLabel>Choose a colour:</FormLabel>
-                <Input
-                    type="color"
-                    onChange={(event) =>
+                <ColourPicker
+                    onChange={(colour) =>
                         dispatch({
                             type: "update-value",
                             data: {
                                 key: "colour",
-                                value: event.target.value,
+                                value: colour,
                             },
                         })
                     }

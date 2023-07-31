@@ -12,6 +12,7 @@ import { headingTheme } from "./typography";
 import { inputTheme } from "./input";
 import { formTheme, formLabelTheme } from "./form";
 import buttonTheme from "./button";
+import { popoverTheme } from "./popover";
 
 const config: ThemeConfig = {
     initialColorMode: "system",
@@ -38,6 +39,7 @@ const overrides = {
         FormLabel: formLabelTheme,
         Form: formTheme,
         Button: buttonTheme,
+        Popover: popoverTheme,
     },
 };
 
