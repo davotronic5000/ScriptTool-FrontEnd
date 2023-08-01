@@ -19,13 +19,11 @@ jobs:
               uses: borales/actions-yarn@v4
               with:
                   cmd: install
-                  dir: script-tool
 
             - name: Build Production build-and-deploy
               uses: borales/actions-yarn@v4
               with:
                   cmd: build
-                  dir: script-tool
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@v4.2.5
