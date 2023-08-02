@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { ScriptSubmission } from "../api-types";
 
 const downloadPdf = async (script: ScriptSubmission) => {
-  return await fetch("http://api.clocktower.guru:8081/script", {
+  return await fetch("https://api.clocktower.guru:8082/script", {
     method: "POST",
     mode: "cors",
     headers: {
