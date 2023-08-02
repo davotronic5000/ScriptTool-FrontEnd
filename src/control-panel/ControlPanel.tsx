@@ -66,6 +66,7 @@ const ControlPanel: ComponentType<ControlPanelProps> = ({
                                 </Button>
                                 <Button
                                     onClick={resetScript}
+                                    isDisabled={fetchingPdf}
                                     variant="secondary"
                                 >
                                     Reset
