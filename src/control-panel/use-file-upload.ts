@@ -2,6 +2,7 @@ import { ChangeEvent, useCallback, useState } from "react";
 import { Role, ScriptSubmission } from "../api-types";
 import { Metadata, RawScript } from "./script";
 import { ScriptManagerDispatch, resetScriptAction } from "./use-script-manager";
+import { useToast } from "@chakra-ui/react";
 
 const isMetaObject = (
     rawScriptObject: Metadata | Role,
@@ -25,6 +26,7 @@ const defaultScript: ScriptSubmission = {
 
 const useFileUpload = ({ dispatch }: { dispatch: ScriptManagerDispatch }) => {
     const [value, setValue] = useState("");
+    const toast = useToast();
     const handleFileUpload = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
             if (
@@ -42,8 +44,19 @@ const useFileUpload = ({ dispatch }: { dispatch: ScriptManagerDispatch }) => {
                 const jsonData = JSON.parse(
                     event.target.result as string,
                 ) as RawScript;
+                if (!Array.isArray(jsonData)) {
+                    toast({
+                        title: "Error processing JSON",
+                        description:
+                            "Your script file does not look like a standard script. Unable to read JSON.",
+                        status: "error",
+                        duration: 9000,
+                        isClosable: true,
+                    });
+                    return;
+                }
                 const meta = jsonData.find(isMetaObject);
-                const modern = window.location.pathname.includes("/modern");
+                const modern = window.location.search.includes("modern");
                 dispatch({
                     type: "update-script",
                     data: {
@@ -57,7 +70,7 @@ const useFileUpload = ({ dispatch }: { dispatch: ScriptManagerDispatch }) => {
             };
             setValue(event.target.value);
         },
-        [setValue, dispatch],
+        [setValue, dispatch, toast],
     );
     return {
         fileUploadFieldValue: value,
