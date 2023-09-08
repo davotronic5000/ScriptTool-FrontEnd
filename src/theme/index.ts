@@ -13,34 +13,36 @@ import { inputTheme } from "./input";
 import { formTheme, formLabelTheme } from "./form";
 import buttonTheme from "./button";
 import { popoverTheme } from "./popover";
+import { checkboxTheme } from "./checkbox";
 
 const config: ThemeConfig = {
-    initialColorMode: "system",
-    useSystemColorMode: true,
+  initialColorMode: "system",
+  useSystemColorMode: true,
 };
 
 const overrides = {
-    config,
-    styles: {
-        global: (props: StyleFunctionProps) => ({
-            body: {
-                bg: mode("white", "gray.800")(props),
-            },
-            "input[type=file]::file-selector-button": {
-                display: "none",
-            },
-        }),
-    },
-    fonts,
-    colors,
-    components: {
-        Heading: headingTheme,
-        Input: inputTheme,
-        FormLabel: formLabelTheme,
-        Form: formTheme,
-        Button: buttonTheme,
-        Popover: popoverTheme,
-    },
+  config,
+  styles: {
+    global: (props: StyleFunctionProps) => ({
+      body: {
+        bg: mode("white", "gray.800")(props),
+      },
+      "input[type=file]::file-selector-button": {
+        display: "none",
+      },
+    }),
+  },
+  fonts,
+  colors,
+  components: {
+    Heading: headingTheme,
+    Input: inputTheme,
+    FormLabel: formLabelTheme,
+    Form: formTheme,
+    Button: buttonTheme,
+    Popover: popoverTheme,
+    Checkbox: checkboxTheme,
+  },
 };
 
 export default extendTheme(overrides);
