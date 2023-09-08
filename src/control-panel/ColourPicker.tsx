@@ -1,6 +1,4 @@
-import React, {
-    ComponentType,
-} from "react";
+import React, { ComponentType } from 'react';
 import {
     Popover,
     PopoverTrigger,
@@ -16,19 +14,19 @@ import {
     Text,
     Link,
     useColorModeValue,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const colors = [
-    "gray",
-    "red",
-    "teal",
-    "blue",
-    "navy",
-    "yellow",
-    "orange",
-    "purple",
-    "green",
-    "#ff80ff",
+    'gray',
+    'red',
+    'teal',
+    'blue',
+    'navy',
+    'yellow',
+    'orange',
+    'purple',
+    'green',
+    '#ff80ff',
 ];
 
 interface ColourPickerProps {
@@ -40,8 +38,11 @@ const ColourPicker: ComponentType<ColourPickerProps> = ({
     onChange,
     value,
 }) => {
-    const linkColor = useColorModeValue("yellow.700", "yellow.300");
-    const buttonBorderColor = useColorModeValue("blackAlpha.600", "whiteAlpha.400");
+    const linkColor = useColorModeValue('yellow.700', 'yellow.300');
+    const buttonBorderColor = useColorModeValue(
+        'blackAlpha.600',
+        'whiteAlpha.400',
+    );
     return (
         <Popover variant="picker">
             <PopoverTrigger>
@@ -101,7 +102,16 @@ const ColourPicker: ComponentType<ColourPickerProps> = ({
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
                     />
-                    <Text fontSize="2xs">Type a colour name or a <Link isExternal color={linkColor} href="https://redketchup.io/color-picker">hexcode</Link></Text>
+                    <Text fontSize="2xs">
+                        Type a colour name or a{' '}
+                        <Link
+                            isExternal
+                            color={linkColor}
+                            href="https://redketchup.io/color-picker"
+                        >
+                            hexcode
+                        </Link>
+                    </Text>
                 </PopoverBody>
             </PopoverContent>
         </Popover>

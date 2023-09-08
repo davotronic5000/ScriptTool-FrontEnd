@@ -1,16 +1,16 @@
-import { ComponentType } from "react";
-import { GridItem, Flex, Button } from "@chakra-ui/react";
-import { Worker, Viewer, PageLayout } from "@react-pdf-viewer/core";
-import { getFilePlugin } from "@react-pdf-viewer/get-file";
-import { headerSize, footerSize } from "./constants";
-import { DownloadIcon } from "@chakra-ui/icons";
+import { ComponentType } from 'react';
+import { GridItem, Flex, Button } from '@chakra-ui/react';
+import { Worker, Viewer, PageLayout } from '@react-pdf-viewer/core';
+import { getFilePlugin } from '@react-pdf-viewer/get-file';
+import { headerSize, footerSize } from './constants';
+import { DownloadIcon } from '@chakra-ui/icons';
 
 const pageLayout: PageLayout = {
     buildPageStyles: () => ({
-        alignItems: "center",
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: "transparent",
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
     }),
     transformSize: ({ size }) => ({
         height: size.height + 30,
@@ -25,13 +25,13 @@ interface ContentProps {
 
 const Content: ComponentType<ContentProps> = ({
     pdf,
-    scriptName = "script",
+    scriptName = 'script',
 }) => {
     const getFilePluginInstance = getFilePlugin({
         fileNameGenerator: () => {
             const fileName = scriptName
                 .toLowerCase()
-                .replace(/[^a-z0-9]+/gi, "-");
+                .replace(/[^a-z0-9]+/gi, '-');
             return fileName;
         },
     });

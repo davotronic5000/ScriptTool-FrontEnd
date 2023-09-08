@@ -1,20 +1,20 @@
-import { Box, Button, ButtonGroup, Flex, Heading } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Flex, Heading } from '@chakra-ui/react';
 import {
     ComponentType,
     Dispatch,
     Fragment,
     SetStateAction,
     useCallback,
-} from "react";
-import FileUpload from "./FileUpload";
-import useFileUpload from "./use-file-upload";
-import ScriptControls from "./ScriptControls";
+} from 'react';
+import FileUpload from './FileUpload';
+import useFileUpload from './use-file-upload';
+import ScriptControls from './ScriptControls';
 import {
     resetScriptAction,
     ScriptManagerDispatch,
     ScriptState,
-} from "./use-script-manager";
-import useDownloadPdf from "./use-download-pdf";
+} from './use-script-manager';
+import useDownloadPdf from './use-download-pdf';
 
 export interface ControlPanelProps {
     updatePdf: Dispatch<SetStateAction<Uint8Array | null>>;
@@ -34,7 +34,7 @@ const ControlPanel: ComponentType<ControlPanelProps> = ({
             dispatch,
         });
     const resetScript = useCallback(() => {
-        setFileName("");
+        setFileName('');
         updatePdf(null);
         dispatch(resetScriptAction);
     }, [setFileName, dispatch, updatePdf]);

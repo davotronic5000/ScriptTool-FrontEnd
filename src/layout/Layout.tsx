@@ -1,21 +1,21 @@
-import React, { useState, ComponentType } from "react";
-import { Box, Grid, useColorModeValue } from "@chakra-ui/react";
-import Header from "./Header";
-import SideBar from "./SideBar";
-import Content from "./Content";
-import { headerSize, footerSize } from "./constants";
-import Footer from "./Footer";
-import useScriptManager from "../control-panel/use-script-manager";
+import React, { useState, ComponentType } from 'react';
+import { Box, Grid, useColorModeValue } from '@chakra-ui/react';
+import Header from './Header';
+import SideBar from './SideBar';
+import Content from './Content';
+import { headerSize, footerSize } from './constants';
+import Footer from './Footer';
+import useScriptManager from '../control-panel/use-script-manager';
 
 const Layout: ComponentType = () => {
     const [pdf, updatePdf] = useState<Uint8Array | null>(null);
     const { script, dispatch } = useScriptManager();
-    const bg = useColorModeValue("blue.700", "gray.700");
+    const bg = useColorModeValue('blue.700', 'gray.700');
     return (
         <Box textAlign="center" fontSize="xl">
             <Grid
                 minH="100vh"
-                templateColumns={"2fr 5fr"}
+                templateColumns={'2fr 5fr'}
                 templateRows={`${headerSize}px auto ${footerSize}px`}
                 bg={bg}
             >

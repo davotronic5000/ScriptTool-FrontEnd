@@ -5,9 +5,9 @@ import {
     Input,
     InputGroup,
     InputLeftAddon,
-} from "@chakra-ui/react";
-import { AttachmentIcon } from "@chakra-ui/icons";
-import { ChangeEventHandler, ComponentType } from "react";
+} from '@chakra-ui/react';
+import { AttachmentIcon } from '@chakra-ui/icons';
+import { ChangeEventHandler, ComponentType } from 'react';
 
 interface FileUploadProps {
     value: string;
@@ -24,7 +24,7 @@ const FileUpload: ComponentType<FileUploadProps> = ({
             <InputGroup>
                 <InputLeftAddon pointerEvents="none">
                     <AttachmentIcon color="gray.300" />
-                </InputLeftAddon>{" "}
+                </InputLeftAddon>{' '}
                 <Input
                     placeholder="Basic usage"
                     type="file"

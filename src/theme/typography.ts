@@ -1,12 +1,12 @@
-import { defineStyleConfig } from "@chakra-ui/react";
+import { defineStyleConfig } from '@chakra-ui/react';
 
 export const headingTheme = defineStyleConfig({
     baseStyle: {
-        fontWeight: "semibold",
-        fontVariant: "small-caps",
-        color: "blue.700",
+        fontWeight: 'semibold',
+        fontVariant: 'small-caps',
+        color: 'blue.700',
         _dark: {
-            color: "gray.200",
+            color: 'gray.200',
         },
     },
 });
