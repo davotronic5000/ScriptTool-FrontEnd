@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { ScriptSubmission } from "../api-types";
+import { useToast } from "@chakra-ui/react";
 
 const downloadPdf = async (script: ScriptSubmission) => {
   return await fetch("https://api.clocktower.guru:8082/script", {
@@ -23,11 +24,22 @@ const useDownloadPdf = (
   updatePdf: Dispatch<SetStateAction<Uint8Array | null>>
 ) => {
   const [fetchingPdf, updateFetchingPdf] = useState(false);
+  const toast = useToast();
   const createPdf = useCallback(
     async (script: ScriptSubmission) => {
       updateFetchingPdf(true);
       const data = await downloadPdf(script);
-      if (data.body) {
+      if (!data.ok) {
+        const response = await data.json();
+        toast({
+          title: 'Error processing JSON',
+          description: response.message,
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        });
+      }
+      if (data.ok && data.body) {
         const reader = await data.body.getReader();
         let pdf = new Uint8Array();
         let processing = true;
@@ -44,7 +56,7 @@ const useDownloadPdf = (
       }
       updateFetchingPdf(false);
     },
-    [updateFetchingPdf, updatePdf]
+    [updateFetchingPdf, updatePdf, toast]
   );
   return { createPdf, fetchingPdf };
 };
