@@ -1,15 +1,9 @@
-import {
-    Box,
-    Checkbox,
-    FormControl,
-    FormHelperText,
-    FormLabel,
-    Input,
-} from '@chakra-ui/react';
+import { Box, FormControl, FormHelperText, FormLabel } from '@chakra-ui/react';
 import { ComponentType } from 'react';
 import { ScriptManagerDispatch } from './use-script-manager';
 import { ScriptSubmission } from '../api-types';
 import ColourPicker from './ColourPicker';
+import SharedScriptFields from './SharedScriptFields';
 
 interface ScriptControlsProps {
     dispatch: ScriptManagerDispatch;
@@ -22,22 +16,7 @@ const ScriptControls: ComponentType<ScriptControlsProps> = ({
 }) => {
     return (
         <Box mb={2}>
-            <FormControl>
-                <FormLabel>Choose a name:</FormLabel>
-                <Input
-                    type="text"
-                    onChange={(event) =>
-                        dispatch({
-                            type: 'update-value',
-                            data: {
-                                key: 'name',
-                                value: event.target.value,
-                            },
-                        })
-                    }
-                    value={script.name}
-                />
-            </FormControl>
+            <SharedScriptFields dispatch={dispatch} script={script} />
             <FormControl>
                 <FormLabel>Choose a colour:</FormLabel>
                 <ColourPicker
@@ -57,23 +36,6 @@ const ScriptControls: ComponentType<ScriptControlsProps> = ({
                     the script. Due to the way these are created, the actual
                     colour appearance may vary.
                 </FormHelperText>
-            </FormControl>
-            <FormControl>
-                <FormLabel>
-                    Would you like us to colourise any custom images?
-                </FormLabel>
-                <Checkbox
-                    isChecked={script.colourise}
-                    onChange={(event) =>
-                        dispatch({
-                            type: 'update-boolean-value',
-                            data: {
-                                key: 'colourise',
-                                value: event.target.checked,
-                            },
-                        })
-                    }
-                />
             </FormControl>
         </Box>
     );

@@ -6,10 +6,12 @@ import Content from './Content';
 import { headerSize, footerSize } from './constants';
 import Footer from './Footer';
 import useScriptManager from '../control-panel/use-script-manager';
+import useTokenManager from '../control-panel/use-token-manager';
 
 const Layout: ComponentType = () => {
     const [pdf, updatePdf] = useState<Uint8Array | null>(null);
     const { script, dispatch } = useScriptManager();
+    const { tokenSettings, dispatchTokenActions } = useTokenManager();
     const bg = useColorModeValue('blue.700', 'gray.700');
     return (
         <Box textAlign="center" fontSize="xl">
@@ -24,6 +26,8 @@ const Layout: ComponentType = () => {
                     updatePdf={updatePdf}
                     script={script}
                     dispatch={dispatch}
+                    tokenSettings={tokenSettings}
+                    dispatchTokenActions={dispatchTokenActions}
                 />
                 <Content pdf={pdf} scriptName={script?.name} />
                 <Footer />

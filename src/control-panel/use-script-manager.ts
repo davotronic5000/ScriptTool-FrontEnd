@@ -11,7 +11,7 @@ interface UpdateScriptAction {
 interface UpdateValueAction {
     type: 'update-value';
     data: {
-        key: 'name' | 'colour' | 'colourise';
+        key: 'name' | 'colour';
         value: string;
     };
 }
@@ -19,7 +19,7 @@ interface UpdateValueAction {
 interface UpdateBooleanValueAction {
     type: 'update-boolean-value';
     data: {
-        key: 'colourise';
+        key: 'colourise' | 'lowInk';
         value: boolean;
     };
 }

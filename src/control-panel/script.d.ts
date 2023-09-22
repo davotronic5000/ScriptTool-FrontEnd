@@ -1,4 +1,4 @@
-import { Role } from '../api-types';
+import { ScriptRole } from '../api-types';
 
 export interface Metadata {
     id: '_meta';
@@ -10,4 +10,4 @@ export interface Metadata {
     backCoverImage?: string;
 }
 
-export type RawScript = (Metadata | Role)[];
+export type RawScript = (Metadata | ScriptRole)[];

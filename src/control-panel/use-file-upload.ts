@@ -1,18 +1,18 @@
 import { ChangeEvent, useCallback, useState } from 'react';
-import { Role, ScriptSubmission } from '../api-types';
+import { ScriptRole, ScriptSubmission } from '../api-types';
 import { Metadata, RawScript } from './script';
 import { ScriptManagerDispatch, resetScriptAction } from './use-script-manager';
 import { useToast } from '@chakra-ui/react';
 
 const isMetaObject = (
-    rawScriptObject: Metadata | Role,
+    rawScriptObject: Metadata | ScriptRole,
 ): rawScriptObject is Metadata => {
     return rawScriptObject.id === '_meta';
 };
 
 const isRoleObject = (
-    rawScriptObject: Metadata | Role,
-): rawScriptObject is Role => {
+    rawScriptObject: Metadata | ScriptRole,
+): rawScriptObject is ScriptRole => {
     return rawScriptObject.id !== '_meta';
 };
 

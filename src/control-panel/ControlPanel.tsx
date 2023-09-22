@@ -24,11 +24,18 @@ import {
     ScriptState,
 } from './use-script-manager';
 import useDownloadPdf from './use-download-pdf';
+import TokenSettings from './TokenSettings';
+import { TokenProcessingVariables } from '../api-types';
+import { TokenManagerDispatch } from './use-token-manager';
+import useDownloadTokenPdf from './use-download-token-pdf';
+import tokenDefaults from './token-defaults';
 
 export interface ControlPanelProps {
     updatePdf: Dispatch<SetStateAction<Uint8Array | null>>;
     dispatch: ScriptManagerDispatch;
     script: ScriptState;
+    tokenSettings: TokenProcessingVariables;
+    dispatchTokenActions: TokenManagerDispatch;
 }
 
 const ControlPanel: ComponentType<ControlPanelProps> = ({
@@ -37,6 +44,7 @@ const ControlPanel: ComponentType<ControlPanelProps> = ({
     dispatch,
 }) => {
     const { fetchingPdf, createPdf } = useDownloadPdf(updatePdf);
+    const { fetchingTokenPdf, createTokenPdf } = useDownloadTokenPdf(updatePdf);
 
     const { fileUploadFieldValue, handleFileUpload, setFileName } =
         useFileUpload({
@@ -118,11 +126,24 @@ const ControlPanel: ComponentType<ControlPanelProps> = ({
                         )}
                         {tool === 'tokens' && (
                             <Fragment>
+                                <TokenSettings
+                                    script={script}
+                                    dispatch={dispatch}
+                                />
                                 <ButtonGroup>
                                     <Button
-                                        isLoading={fetchingPdf}
+                                        isLoading={fetchingTokenPdf}
                                         loadingText="Submitting"
-                                        onClick={() => {}}
+                                        onClick={() =>
+                                            createTokenPdf({
+                                                name: script.name,
+                                                modern: script.modern,
+                                                lowInk: script.lowInk,
+                                                roles: script.roles,
+                                                tokenProcessingSettings:
+                                                    tokenDefaults,
+                                            })
+                                        }
                                     >
                                         Submit
                                     </Button>
@@ -136,7 +157,7 @@ const ControlPanel: ComponentType<ControlPanelProps> = ({
                                             resetScript();
                                             updateTool('none');
                                         }}
-                                        isDisabled={fetchingPdf}
+                                        isDisabled={fetchingTokenPdf}
                                         variant="secondary"
                                     >
                                         Start Over
