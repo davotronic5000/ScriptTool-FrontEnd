@@ -1,10 +1,19 @@
-import { Box, Button, ButtonGroup, Flex, Heading } from '@chakra-ui/react';
+import {
+    Box,
+    Button,
+    ButtonGroup,
+    Flex,
+    Heading,
+    Text,
+    VStack,
+} from '@chakra-ui/react';
 import {
     ComponentType,
     Dispatch,
     Fragment,
     SetStateAction,
     useCallback,
+    useState,
 } from 'react';
 import FileUpload from './FileUpload';
 import useFileUpload from './use-file-upload';
@@ -38,6 +47,7 @@ const ControlPanel: ComponentType<ControlPanelProps> = ({
         updatePdf(null);
         dispatch(resetScriptAction);
     }, [setFileName, dispatch, updatePdf]);
+    const [tool, updateTool] = useState<'script' | 'tokens' | 'none'>('none');
     return (
         <Flex direction="column" p={2}>
             <Heading
@@ -54,25 +64,86 @@ const ControlPanel: ComponentType<ControlPanelProps> = ({
             <Box p={2}>
                 {script ? (
                     <Fragment>
-                        <ScriptControls dispatch={dispatch} script={script} />
-                        <Flex justifyContent="center">
-                            <ButtonGroup>
-                                <Button
-                                    isLoading={fetchingPdf}
-                                    loadingText="Submitting"
-                                    onClick={() => createPdf(script)}
-                                >
-                                    Submit
+                        {tool === 'none' && (
+                            <VStack spacing={4}>
+                                <Button onClick={() => updateTool('script')}>
+                                    Create Script
                                 </Button>
-                                <Button
-                                    onClick={resetScript}
-                                    isDisabled={fetchingPdf}
-                                    variant="secondary"
-                                >
-                                    Reset
+                                <Flex>
+                                    <Text
+                                        casing="uppercase"
+                                        fontFamily="heading"
+                                    >
+                                        ~ Or ~
+                                    </Text>
+                                </Flex>
+                                <Button onClick={() => updateTool('tokens')}>
+                                    Create Tokens
                                 </Button>
-                            </ButtonGroup>
-                        </Flex>
+                            </VStack>
+                        )}
+                        {tool === 'script' && (
+                            <Fragment>
+                                <ScriptControls
+                                    dispatch={dispatch}
+                                    script={script}
+                                />
+                                <Flex justifyContent="center">
+                                    <ButtonGroup>
+                                        <Button
+                                            isLoading={fetchingPdf}
+                                            loadingText="Submitting"
+                                            onClick={() => createPdf(script)}
+                                        >
+                                            Submit
+                                        </Button>
+                                        <Button
+                                            onClick={() => updateTool('tokens')}
+                                        >
+                                            Make Tokens
+                                        </Button>
+                                        <Button
+                                            onClick={() => {
+                                                resetScript();
+                                                updateTool('none');
+                                            }}
+                                            isDisabled={fetchingPdf}
+                                            variant="secondary"
+                                        >
+                                            Start Over
+                                        </Button>
+                                    </ButtonGroup>
+                                </Flex>
+                            </Fragment>
+                        )}
+                        {tool === 'tokens' && (
+                            <Fragment>
+                                <ButtonGroup>
+                                    <Button
+                                        isLoading={fetchingPdf}
+                                        loadingText="Submitting"
+                                        onClick={() => {}}
+                                    >
+                                        Submit
+                                    </Button>
+                                    <Button
+                                        onClick={() => updateTool('script')}
+                                    >
+                                        Make Script
+                                    </Button>
+                                    <Button
+                                        onClick={() => {
+                                            resetScript();
+                                            updateTool('none');
+                                        }}
+                                        isDisabled={fetchingPdf}
+                                        variant="secondary"
+                                    >
+                                        Start Over
+                                    </Button>
+                                </ButtonGroup>
+                            </Fragment>
+                        )}
                     </Fragment>
                 ) : (
                     <FileUpload
