@@ -22,6 +22,19 @@ const solid = defineStyle({
     },
 });
 
+const icon = defineStyle({
+    color: 'blue.800',
+    _hover: {
+        color: 'blue.400',
+    },
+    _dark: {
+        color: 'blue.200',
+        _hover: {
+            color: 'blue.600',
+        },
+    },
+});
+
 const secondary = defineStyle({
     textTransform: 'uppercase',
     fontWeight: 'bold',
@@ -47,7 +60,7 @@ const buttonTheme = defineStyleConfig({
     defaultProps: {
         size: 'sm',
     },
-    variants: { solid, secondary },
+    variants: { solid, secondary, icon },
 });
 
 export default buttonTheme;

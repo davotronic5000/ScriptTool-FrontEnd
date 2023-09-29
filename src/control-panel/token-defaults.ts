@@ -1,20 +1,20 @@
 const tokenDefaults = {
     page: {
-        height: 1123,
-        width: 794,
-        margin: 38,
+        height: 297,
+        width: 210,
+        margin: 10,
     },
     tokens: {
-        margin: 4,
+        margin: 1,
         role: {
-            size: 170,
-            imageMarginX: 20,
-            imageMarginY: 10,
+            size: 45,
+            imageMarginX: 5,
+            imageMarginY: 2.5,
         },
         reminder: {
-            size: 94.5,
-            imageMarginX: 15,
-            imageMarginY: 5,
+            size: 25,
+            imageMarginX: 4,
+            imageMarginY: 1,
         },
     },
     styles: {
@@ -40,7 +40,7 @@ const tokenDefaults = {
             alpha: 0.4,
             circleBorder: true,
             squareBorder: false,
-            thickness: 5,
+            thickness: 1,
         },
     },
 };

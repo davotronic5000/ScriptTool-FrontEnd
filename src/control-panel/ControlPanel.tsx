@@ -42,6 +42,8 @@ const ControlPanel: ComponentType<ControlPanelProps> = ({
     updatePdf,
     script,
     dispatch,
+    dispatchTokenActions,
+    tokenSettings,
 }) => {
     const { fetchingPdf, createPdf } = useDownloadPdf(updatePdf);
     const { fetchingTokenPdf, createTokenPdf } = useDownloadTokenPdf(updatePdf);
@@ -129,6 +131,8 @@ const ControlPanel: ComponentType<ControlPanelProps> = ({
                                 <TokenSettings
                                     script={script}
                                     dispatch={dispatch}
+                                    dispatchTokenActions={dispatchTokenActions}
+                                    tokenSettings={tokenSettings}
                                 />
                                 <ButtonGroup>
                                     <Button

@@ -9,11 +9,12 @@ import { extendTheme } from '@chakra-ui/theme-utils';
 import colors from './colors';
 import fonts from './fonts';
 import { headingTheme } from './typography';
-import { inputTheme } from './input';
+import { inputTheme } from './form/input';
 import { formTheme, formLabelTheme } from './form';
 import buttonTheme from './button';
 import { popoverTheme } from './popover';
 import { checkboxTheme } from './checkbox';
+import { numberInputTheme } from './form/number-input';
 
 const config: ThemeConfig = {
     initialColorMode: 'system',
@@ -37,6 +38,7 @@ const overrides = {
     components: {
         Heading: headingTheme,
         Input: inputTheme,
+        NumberInput: numberInputTheme,
         FormLabel: formLabelTheme,
         Form: formTheme,
         Button: buttonTheme,
