@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState } from 'react';
-import { ScriptRole, ScriptSubmission } from '../api-types';
+import { Role, ScriptRole, ScriptSubmission } from '../api-types';
 import { Metadata, RawScript } from './script';
 import { ScriptManagerDispatch, resetScriptAction } from './use-script-manager';
 import { useToast } from '@chakra-ui/react';
@@ -56,7 +56,8 @@ const useFileUpload = ({ dispatch }: { dispatch: ScriptManagerDispatch }) => {
                     });
                     return;
                 }
-                const meta = jsonData.find(isMetaObject);
+                const deStringedJsonData = jsonData.map((role) => typeof role === "string" || role instanceof String ? {"id": role} as Role|Metadata : role) 
+                const meta = deStringedJsonData.find(isMetaObject);
                 const modern = window.location.search.includes('modern');
                 dispatch({
                     type: 'update-script',
@@ -64,7 +65,7 @@ const useFileUpload = ({ dispatch }: { dispatch: ScriptManagerDispatch }) => {
                         name: meta?.name || defaultScript.name,
                         colour: meta?.colour || defaultScript.colour,
                         type: defaultScript.type,
-                        roles: jsonData.filter(isRoleObject),
+                        roles: deStringedJsonData.filter(isRoleObject),
                         modern,
                         colourise: meta?.colouriseImages || true,
                     },

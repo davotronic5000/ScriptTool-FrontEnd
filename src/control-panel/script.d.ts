@@ -10,4 +10,5 @@ export interface Metadata {
     backCoverImage?: string;
 }
 
-export type RawScript = (Metadata | ScriptRole)[];
+export type RawScript = (Metadata | Role | string)[];
+export type RawScriptWithoutString = (Metadata | Role)[];
