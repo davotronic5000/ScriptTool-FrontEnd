@@ -146,6 +146,7 @@ const ControlPanel: ComponentType<ControlPanelProps> = ({
                                                 roles: script.roles,
                                                 tokenProcessingSettings:
                                                     tokenDefaults,
+                                                colourise: script.colourise,
                                             })
                                         }
                                     >
